@@ -2,7 +2,16 @@ const { format } = require("date-fns");
 const args = process.argv.slice(2);
 
 const defaultValues = {
-  greeting: "Hello",
+  language: 'en'
+};
+
+const greetings = {
+  en: "Hello",
+  es: "Hola",
+  fr: "Bonjour",
+  de: "Hallo",
+  it: "Ciao",
+  ru: "Привет",
 };
 
 for (let i = 0; i < args.length; i++) {
@@ -22,6 +31,11 @@ for (let i = 0; i < args.length; i++) {
       defaultValues.greeting = args[i + 1];
       i++;
       break;
+    case '--language':
+    case '-lang':
+      defaultValues.language = args[i + 1];
+      i++;
+      break;
     default:
       break;
   }
@@ -32,12 +46,18 @@ if (!defaultValues.name || !defaultValues.level) {
   process.exit(1);
 }
 
-const greeting = (name, level, greeting) => {
+if (!greetings.hasOwnProperty(defaultValues.language)) {
+  console.error(`Error: The language "${defaultValues.language}" is not supported. Please specify one of the following languages: en, es, fr, de, it, ru`);
+  process.exit(1);
+}
+
+const greeting = (name, level, greeting, language) => {
+  const greetingMessage = !greeting ? greetings[language] : greetings['en']
   if (level === "1") {
-    console.log(`${greeting} ${name}.`);
+    console.log(`${greetingMessage} ${name}.`);
   } else if (level === "2") {
     console.log(
-      `${greeting} ${name}! (Date and Time: ${format(
+      `${greetingMessage} ${name}! (Date and Time: ${format(
         new Date(),
         "yyyy-MM-dd HH:mm:ss"
       )})`
@@ -47,4 +67,4 @@ const greeting = (name, level, greeting) => {
   }
 };
 
-greeting(defaultValues.name, defaultValues.level, defaultValues.greeting);
+greeting(defaultValues.name, defaultValues.level, defaultValues.greeting, defaultValues.language);

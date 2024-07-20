@@ -28,6 +28,7 @@ You can run the script from the command line with various options. Here are the 
 - --name, -n (required): Specify the name of the person to greet.
 - --level, -l (required): Specify the verbosity level (1 or 2).
 - --greeting, -g (optional): Provide a custom greeting message.
+- --language, -lang (optional): Specify the language for greeting (this works only with default greeting message)
 
 ## Examples
 
@@ -52,6 +53,17 @@ Output:
  Hi Nare! (Date and Time: YYYY-MM-DD HH:mm:ss)
 ```
 
+- Default greeting with specified language 
+
+```bash
+ node index.js -n Nare -l 2 -lang it
+```
+Output:
+
+```plaintext
+ Ciao Nare! (Date and Time: YYYY-MM-DD HH:mm:ss)
+```
+
 - Missing required arguments
 
 ```bash
@@ -66,6 +78,7 @@ Output:
 ## Error Handling
 - If --name or -n and --level, or -l are not provided, an error message will be shown and the script will exit with a non-zero status.
 - If an invalid verbosity level is provided (anything other than "1" or "2"), an error message will be shown.
+- If an unsupported language is provided, an error message will be shown and the script will exit with a non-zero status.
 
 ## License
 ISC
