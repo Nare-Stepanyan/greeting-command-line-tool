@@ -2,9 +2,7 @@ const { format } = require("date-fns");
 const args = process.argv.slice(2);
 
 const defaultValues = {
-  name: "guest",
   greeting: "Hello",
-  level: "2",
 };
 
 for (let i = 0; i < args.length; i++) {
@@ -30,18 +28,24 @@ for (let i = 0; i < args.length; i++) {
   }
 }
 
-const greeting = (
-  name = defaultValues.name,
-  level = defaultValues.level,
-  greeting = defaultValues.greeting
-) => {
-  level === "1" && console.log(`${greeting} ${name}.`);
-  level === "2" &&
+if (!defaultValues.name || !defaultValues.level) {
+  console.error("Error: --name or -n and --level or -lvl or -l are required.");
+  process.exit(1);
+}
+
+const greeting = (name, level, greeting) => {
+  if (level === "1") {
+    console.log(`${greeting} ${name}.`);
+  } else if (level === "2") {
     console.log(
       `${greeting} ${name}! (Date and Time: ${format(
         new Date(),
         "yyyy-MM-dd HH:mm:ss"
       )})`
     );
+  } else {
+    console.log('Invalid verbosity level. Please use "1" or "2".');
+  }
 };
-greeting();
+
+greeting(defaultValues.name, defaultValues.level, defaultValues.greeting);
