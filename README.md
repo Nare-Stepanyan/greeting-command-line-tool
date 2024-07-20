@@ -9,6 +9,7 @@ This CLI tool allows you to generate personalized greeting messages. You can spe
 - Greet a person with a customizable message.
 - Choose between different verbosity levels.
 - Set a custom greeting message or use the default.
+- Set a language for greeting.
 
 ## Installation
 
