@@ -1,14 +1,14 @@
 {
-  "name": "greeting-command-line-tool",
+  "name": "greetings-cli",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nare",
   "license": "ISC",
-  "description": "",
+  "description": "A CLI tool for greeting people",
   "dependencies": {
     "date-fns": "^3.6.0"
   }

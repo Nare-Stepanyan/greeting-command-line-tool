@@ -13,7 +13,6 @@ for (let i = 0; i < args.length; i++) {
       i++;
       break;
     case "--level":
-    case "-lvl":
     case "-l":
       defaultValues.level = args[i + 1];
       i++;
@@ -29,7 +28,7 @@ for (let i = 0; i < args.length; i++) {
 }
 
 if (!defaultValues.name || !defaultValues.level) {
-  console.error("Error: --name or -n and --level or -lvl or -l are required.");
+  console.error("Error: --name or -n and --level or -l are required.");
   process.exit(1);
 }
 
