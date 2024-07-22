@@ -52,7 +52,7 @@ if (!greetings.hasOwnProperty(defaultValues.language)) {
 }
 
 const greeting = (name, level, greeting, language) => {
-  const greetingMessage = !greeting ? greetings[language] : greetings['en']
+  const greetingMessage = greeting ? greeting : (greetings[language] || greetings["en"]);
   if (level === "1") {
     console.log(`${greetingMessage} ${name}.`);
   } else if (level === "2") {
